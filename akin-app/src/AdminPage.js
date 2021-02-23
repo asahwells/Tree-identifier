@@ -180,7 +180,9 @@ const AdminPage = ({ handleLogout }) => {
           <img src={Icon} alt="tree" width="50px" height="50px" />
           Tree identifier
         </h4>
-
+        <Link to="/history">
+          <button> History</button>
+        </Link>
         <Link to="/question">
           <button> Questions</button>
         </Link>
@@ -323,7 +325,7 @@ const AdminPage = ({ handleLogout }) => {
             />
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="success">
-                The questions has been updated successfully
+                The answers has been updated successfully
               </Alert>
             </Snackbar>
           </>

@@ -8,6 +8,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import Loader from "./Loading";
 import Icon from "./tree.svg";
+import Button from "@material-ui/core/Button";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -22,19 +23,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Question = ({ handleLogout }) => {
-  // const [value, setValue] = useState("");
-  // const [Dvalue, setDvalue] = useState("");
-  // const code = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  // const codex = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  // const code = codex.sort((a, b) => a - b);
   // const defaultOutcomeDetails = {
   //   Question: "",
   //   Description: "",
+  //   image: "",
   // };
   const [quest, setQuest] = useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
   // code.map((x, i) => ({
   //   number: x,
   //   ...defaultOutcomeDetails,
   // }))
+  const [image, setImage] = useState(null);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [progress, setProgress] = useState(0);
 
   const [open, setOpen] = useState(false);
 
@@ -44,7 +47,7 @@ const Question = ({ handleLogout }) => {
     }
     setOpen(false);
   };
-  // console.log(quest);
+  //  console.log(quest);
   useEffect(() => {
     firebase
       .firestore()
@@ -86,6 +89,45 @@ const Question = ({ handleLogout }) => {
     });
     setOpen(true);
   };
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+  const upload = (num) => {
+    const ref = firebase.storage().ref(`images/${image.name}`).put(image);
+    ref.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(progress);
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        firebase
+          .storage()
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then((url) => {
+            alert("image uploaded");
+            const newNub = [...quest];
+            const newQuest = newNub.map((questValue) => {
+              if (num === questValue.number) {
+                return { ...questValue, image: url };
+              }
+              return questValue;
+            });
+            setQuest(newQuest);
+          });
+      }
+    );
+  };
+
   // useEffect(() => {
   //   quest.forEach((element) => {
   //     firebase
@@ -109,7 +151,9 @@ const Question = ({ handleLogout }) => {
           <img src={Icon} alt="tree" width="50px" height="50px" />
           Tree identifier
         </h4>
-
+        <Link to="/history">
+          <button> History</button>
+        </Link>
         <Link to="/adminPage">
           <button> Answers</button>
         </Link>
@@ -162,6 +206,31 @@ const Question = ({ handleLogout }) => {
                         }
                       />
                     </div>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <input
+                        accept="image/*"
+                        className={classes.input}
+                        id="photo"
+                        multiple
+                        type="file"
+                        onChange={handleImageChange}
+                      />
+                      {co.image !== "" ? (
+                        <progress value={progress} max="100" />
+                      ) : null}
+
+                      <label htmlFor="contained-button-file">
+                        <Button
+                          style={{ fontSize: "1rem" }}
+                          variant="contained"
+                          color="primary"
+                          onClick={() => upload(co.number)}
+                          component="span"
+                        >
+                          Upload
+                        </Button>
+                      </label>
+                    </div>
                   </li>
                 </ol>
               </>
@@ -185,7 +254,7 @@ const Question = ({ handleLogout }) => {
             </div>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="success">
-                The Answers has been updated successfully
+                The Questions has been updated successfully
               </Alert>
             </Snackbar>
           </>

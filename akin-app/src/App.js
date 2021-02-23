@@ -9,6 +9,7 @@ import fire from "./Fire";
 import Final from "./Final";
 import AdminPage from "./AdminPage";
 import Question from "./Question";
+import History from "./History";
 
 function App() {
   const [user, setUser] = useState("");
@@ -99,6 +100,25 @@ function App() {
           component={
             user
               ? () => <Question handleLogout={handleLogout} />
+              : () => (
+                  <Login
+                    handleLogin={handleLogin}
+                    setEmail={setEmail}
+                    email={email}
+                    pass={pass}
+                    setPass={setPass}
+                    emailError={emailError}
+                    passError={passError}
+                    handleLogout={handleLogout}
+                  />
+                )
+          }
+        />
+        <Route
+          path="/history"
+          component={
+            user
+              ? () => <History handleLogout={handleLogout} />
               : () => (
                   <Login
                     handleLogin={handleLogin}

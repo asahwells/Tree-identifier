@@ -27,7 +27,7 @@ const Final = (props) => {
             alignItems: "center",
           }}
         >
-          <h1>Sorry we were unable to identify your tree</h1>
+          <h3>Sorry we were unable to identify your tree</h3>
           <h5>
             <Link to="/">Back</Link>
           </h5>

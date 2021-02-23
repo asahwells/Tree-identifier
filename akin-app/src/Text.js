@@ -9,19 +9,34 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Navbar from "./NavBar";
+import InfoIcon from "@material-ui/icons/Info";
 import Loader from "./Loading";
-// import FormLabel from "@material-ui/core/FormLabel";
-// import Data from "./Data";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
 import { Link } from "react-router-dom";
-// import Final from "./Final";
 import firebase from "./Fire";
+import IconButton from "@material-ui/core/IconButton";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 400,
     flexGrow: 1,
   },
-});
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    display: "flex",
+    flexDirection: "column",
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 // const Questions = [
 //   "Does it have leaves?",
 //   "Are the leaves broad?",
@@ -34,6 +49,15 @@ export default function Text() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [data, setData] = useState([]);
   const [questdata, setQuestdata] = useState([]);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     const db = firebase.firestore();
@@ -99,6 +123,8 @@ export default function Text() {
   // };
   const newquest = questdata.map((da) => da);
   const newValue = [newquest[activeStep]];
+  const num = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  const arrangedNum = [num[activeStep]];
   // const number = questdata.map((da) => da.number);
 
   // console.log(newquest);
@@ -115,8 +141,45 @@ export default function Text() {
               {newValue.map((i) => (
                 <div key={i}>
                   <h3 className="card-title" style={{ marginTop: "30px" }}>
-                    {i.number}. {i.Question}
+                    {arrangedNum.map((num) => num)}. {i.Question}
+                    <IconButton
+                      onClick={handleOpen}
+                      color="primary"
+                      aria-label="info icon"
+                      component="span"
+                    >
+                      <InfoIcon />
+                    </IconButton>
                   </h3>
+                  <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    className={classes.modal}
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                      timeout: 500,
+                    }}
+                  >
+                    <Fade in={open}>
+                      <div className={classes.paper}>
+                        <img
+                          id="transition-modal-title"
+                          src={i.image}
+                          alt={i.number}
+                          style={{
+                            height: "20rem",
+                            width: "30rem",
+                            marginBottom: "10px",
+                          }}
+                        />
+                        {/* <h2 id="transition-modal-title">Transition modal</h2> */}
+                        <p id="transition-modal-description">{i.Description}</p>
+                      </div>
+                    </Fade>
+                  </Modal>
                   <FormControl component="fieldset">
                     {/* <FormLabel component="legend">Questions</FormLabel> */}
                     <RadioGroup
@@ -184,7 +247,7 @@ export default function Text() {
             <>
               <div
                 style={{
-                  marginTop: "10rem",
+                  // marginTop: "10rem",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
