@@ -170,8 +170,8 @@ export default function Text() {
                           src={i.image}
                           alt={i.number}
                           style={{
-                            height: "20rem",
-                            width: "30rem",
+                            height: "10rem",
+                            width: "15rem",
                             marginBottom: "10px",
                           }}
                         />

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from "react";
+// import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import firebase from "./Fire";
 import { Link } from "react-router-dom";
@@ -82,8 +82,9 @@ const Login = (props) => {
 
         <div className="btnContainer">
           <Link to="/search">
-            {" "}
-            <button onClick={VisitorLogin}>Sign In</button>{" "}
+            <button className="btn btn-light" onClick={VisitorLogin}>
+              Sign In
+            </button>
           </Link>
         </div>
         {/* <label>password</label>

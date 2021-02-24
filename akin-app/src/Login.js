@@ -6,7 +6,6 @@ import Input from "@material-ui/core/Input";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
-import clsx from "clsx";
 import Icon from "./tree.svg";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -51,7 +50,7 @@ const Login = (props) => {
     event.preventDefault();
   };
   console.log(email);
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <section className="login">
       <div className="loginContainer">
@@ -119,7 +118,9 @@ const Login = (props) => {
           <p className="errorMsg">{passError}</p>
         </form>
         <div className="btnContainer">
-          <button onClick={handleLogin}>Sign In</button>
+          <button onClick={handleLogin} className="btn btn-light">
+            Sign In
+          </button>
         </div>
         {/* <label>password</label>
         <input

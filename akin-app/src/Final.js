@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/scope */
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "./NavBar";
 // import { Table } from "react-bootstrap";
 import "./Table.css";
