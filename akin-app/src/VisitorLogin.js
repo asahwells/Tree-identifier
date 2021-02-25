@@ -40,7 +40,7 @@ const Login = (props) => {
       <div className="loginContainer">
         <div
           style={{
-            marginTop: "-70px",
+            marginTop: "-30px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -59,7 +59,7 @@ const Login = (props) => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
-              marginTop: "80px",
+              marginTop: "50px",
             }}
           >
             <TextField
@@ -83,7 +83,7 @@ const Login = (props) => {
         <div className="btnContainer">
           <Link to="/search">
             <button className="btn btn-light" onClick={VisitorLogin}>
-              Sign In
+              Start Identification
             </button>
           </Link>
         </div>

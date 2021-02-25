@@ -14,9 +14,10 @@ import Loader from "./Loading";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import firebase from "./Fire";
 import IconButton from "@material-ui/core/IconButton";
+import Second from "./Second";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -136,7 +137,9 @@ export default function Text() {
         <Loader />
       ) : (
         <div className="card">
-          {newquest.length !== activeStep ? (
+          {newquest.length === activeStep ? (
+            <Second filteredCode={filteredCode} />
+          ) : (
             <div className="card-body">
               {newValue.map((i) => (
                 <div key={i}>
@@ -243,44 +246,6 @@ export default function Text() {
                 }
               />
             </div>
-          ) : (
-            <>
-              <div
-                style={{
-                  // marginTop: "10rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <div>Click next to view the result of your search</div>
-                {filteredCode.map((filt) => (
-                  <Link
-                    key={filt.code}
-                    to={{
-                      pathname: "/Result",
-                      state: {
-                        BotanicalName: filt.botanicalName,
-                        CommonName: filt.commonName,
-                        Image: filt.image,
-                      },
-                    }}
-                  >
-                    <button
-                      style={{
-                        width: "20rem",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      Next
-                    </button>
-                  </Link>
-                ))}
-              </div>
-            </>
           )}
         </div>
       )}

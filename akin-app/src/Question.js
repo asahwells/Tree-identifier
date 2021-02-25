@@ -154,7 +154,7 @@ const Question = ({ handleLogout }) => {
         <Link to="/history">
           <button> History</button>
         </Link>
-        <Link to="/adminPage">
+        <Link to="/admin">
           <button> Answers</button>
         </Link>
         <button onClick={handleLogout}> logout</button>

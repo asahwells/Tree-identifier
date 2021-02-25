@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AdminPage = ({ handleLogout }) => {
+const Admin = ({ handleLogout }) => {
   const classes = useStyles();
   const theme = useTheme();
   // const codeArray = Data;
@@ -47,7 +47,7 @@ const AdminPage = ({ handleLogout }) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const [open, setOpen] = React.useState(false);
 
@@ -69,11 +69,11 @@ const AdminPage = ({ handleLogout }) => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2500);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 2500);
+  // }, []);
   // const [ractiveStep, setRactiveStep] = useState();
   // const [numberOfConfigFS, setNumberOfConfigFS] = useState([]);
   // const defaultOutcomeDetails = {
@@ -103,6 +103,7 @@ const AdminPage = ({ handleLogout }) => {
         setCode(fetchedData);
         // console.log(fetchedData);
       });
+    setIsLoading(true);
   }, []);
   // useEffect(() => {
   //   code.forEach((element) => {
@@ -191,9 +192,7 @@ const AdminPage = ({ handleLogout }) => {
       </nav>
 
       <div className={classes.root}>
-        {isLoading === true ? (
-          <Loader />
-        ) : (
+        {isLoading ? (
           <>
             <Grid container spacing={3}>
               <Grid
@@ -205,15 +204,15 @@ const AdminPage = ({ handleLogout }) => {
                   marginTop: "10px",
                 }}
               >
-                <h3
+                <h4
                   style={{ marginLeft: "20px", width: "14rem", color: "black" }}
                 >
                   Binary Code
-                </h3>
-                <h3 style={{ width: "14rem", color: "black" }}>
+                </h4>
+                <h4 style={{ width: "14rem", color: "black" }}>
                   Botanical Name
-                </h3>
-                <h3 style={{ width: "16rem", color: "black" }}> Common Name</h3>
+                </h4>
+                <h4 style={{ width: "16rem", color: "black" }}> Common Name</h4>
               </Grid>
               {newValue.map((co, i) => (
                 <Grid
@@ -230,7 +229,7 @@ const AdminPage = ({ handleLogout }) => {
                     value={co.code}
                   />
                   {/* </Grid>
-              <Grid item xs> */}
+           <Grid item xs> */}
                   <input
                     className={classes.header}
                     type="text"
@@ -329,19 +328,11 @@ const AdminPage = ({ handleLogout }) => {
               </Alert>
             </Snackbar>
           </>
+        ) : (
+          <Loader />
         )}
       </div>
-
-      {/* {code.map((cod) => (
-        <input
-          type="text"
-          autoFocus
-          required
-          value={codeText}
-          onChange={(e) => setCodeText(e.target.value)}
-        />
-      ))} */}
     </section>
   );
 };
-export default AdminPage;
+export default Admin;

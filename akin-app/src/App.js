@@ -8,7 +8,7 @@ import Login from "./Login";
 import { Route, Switch } from "react-router-dom";
 import fire from "./Fire";
 import Final from "./Final";
-import AdminPage from "./AdminPage";
+import Admin from "./Admin";
 import Question from "./Question";
 import History from "./History";
 
@@ -66,22 +66,12 @@ function App() {
 
   return (
     <React.Fragment>
-      {/* {user ?  <AdminPage handleLogout={handleLogout} /> : <Login
-                    handleLogin={handleLogin}
-                    setEmail={setEmail}
-                    email={email}
-                    pass={pass}
-                    setPass={setPass}
-                    emailError={emailError}
-                    passError={passError}
-                    handleLogout={handleLogout}
-                  /> } */}
       <Switch>
         <Route
-          path="/adminPage"
+          path="/admin"
           render={
             user
-              ? () => <AdminPage handleLogout={handleLogout} />
+              ? () => <Admin handleLogout={handleLogout} />
               : () => (
                   <Login
                     handleLogin={handleLogin}

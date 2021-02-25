@@ -20,17 +20,28 @@ const Final = (props) => {
       {props.location.state.BotanicalName === "" ? (
         <div
           style={{
-            marginTop: "10rem",
+            marginTop: "4rem",
             display: "flex",
+            textAlign: "center",
+            padding: "30px",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <h3>Sorry we were unable to identify your tree</h3>
           <h5>
-            <Link to="/">Back</Link>
+            Sorry we were unable to identify your tree, Please contact admin and
+            upload the picture of the tree you're identifying. You will be
+            contacted with the tree name within few hours.
           </h5>
+          <button>
+            <a
+              style={{ color: "white" }}
+              href="https://treesidentifier.org.ng/contact-us/"
+            >
+              Contact Admin
+            </a>
+          </button>
         </div>
       ) : (
         <div>
@@ -62,16 +73,19 @@ const Final = (props) => {
                 </td>
                 <td
                   data-label="Botanical Name -"
-                  style={{ paddingTop: "50px" }}
+                  style={{ fontStyle: "italic" }}
                 >
                   {props.location.state.BotanicalName}
                 </td>
-                <td data-label="Common Name -" style={{ paddingTop: "50px" }}>
+                <td data-label="Common Name -">
                   {props.location.state.CommonName}
                 </td>
               </tr>
             </tbody>
           </table>
+          <h4 style={{ textAlign: "center", marginTop: "-40px" }}>
+            <Link to="/">Go Back</Link>
+          </h4>
         </div>
       )}
     </>

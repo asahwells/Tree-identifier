@@ -26,10 +26,11 @@ const History = (handleLogout) => {
   const handleDelete = () => {
     const db = firebase.firestore();
     db.collection("visitors")
-      .doc()
-      .delete()
-      .then(() => {
-        console.log("successfully deleted");
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref.delete();
+        });
       })
       .catch((error) => console.error("error in removing :", error));
     setOpen(true);
@@ -50,7 +51,7 @@ const History = (handleLogout) => {
         <Link to="/question">
           <button> Questions</button>
         </Link>
-        <Link to="/adminPage">
+        <Link to="/admin">
           <button> Answers</button>
         </Link>
         <button onClick={handleLogout}> logout</button>
@@ -81,6 +82,7 @@ const History = (handleLogout) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          marginTop: "10px",
         }}
       >
         <button

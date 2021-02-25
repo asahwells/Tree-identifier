@@ -7,25 +7,25 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import Icon from "./tree.svg";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 // import { Form } from "react-bootstrap";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  margin: {
-    margin: theme.spacing(1),
-  },
-  withoutLabel: {
-    marginTop: theme.spacing(3),
-  },
-  textField: {
-    width: "45ch",
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     display: "flex",
+//     flexWrap: "wrap",
+//   },
+//   margin: {
+//     margin: theme.spacing(1),
+//   },
+//   withoutLabel: {
+//     marginTop: theme.spacing(3),
+//   },
+//   textField: {
+//     width: "45ch",
+//   },
+// }));
 
 const Login = (props) => {
   const {
@@ -64,7 +64,7 @@ const Login = (props) => {
         /> */}
         <div
           style={{
-            marginTop: "-70px",
+            marginTop: "-30px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -82,7 +82,7 @@ const Login = (props) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            marginTop: "80px",
+            marginTop: "40px",
           }}
         >
           <TextField

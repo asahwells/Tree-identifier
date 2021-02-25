@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Lora", serif;
 }
 
 button {
@@ -10,10 +10,10 @@ button {
   outline: none;
   width: 100%;
   padding: 15px 0;
-  color: #fff;
+  color: #ffff;
   font-size: 16px;
   letter-spacing: 1px;
-  background: #603bbb;
+  background: #03a27b;
   cursor: pointer;
 }
 
@@ -25,10 +25,10 @@ button {
   display: flex;
 }
 .card {
-  padding: 60px;
+  padding: 20px;
   margin: auto;
   margin-top: 6rem;
-  width: 80%;
+  width: 90%;
   max-width: 520px;
   min-height: 400px;
   display: flex;
@@ -43,11 +43,11 @@ button {
 } */
 
 .login .loginContainer {
-  padding: 60px;
+  padding: 20px;
   margin: auto;
-  width: 100%;
+  width: 90%;
   max-width: 520px;
-  min-height: 600px;
+  min-height: 500px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
