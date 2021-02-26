@@ -26,7 +26,7 @@ export default class NavBar extends Component {
           </Link> */}
           <Link to="/" className="nav-link text-white">
             <img src={Icon} alt="tree" width="50px" height="50px" /> Tree
-            Indicator
+            Identifier
           </Link>
         </nav>
       </>

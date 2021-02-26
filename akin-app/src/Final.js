@@ -19,6 +19,7 @@ const Final = (props) => {
 
       {props.location.state.BotanicalName === "" ? (
         <div
+          className="card"
           style={{
             marginTop: "4rem",
             display: "flex",
@@ -42,6 +43,9 @@ const Final = (props) => {
               Contact Admin
             </a>
           </button>
+          <p style={{ marginTop: "5px" }}>
+            <Link to="/">Try again</Link>
+          </p>
         </div>
       ) : (
         <div>
@@ -83,9 +87,36 @@ const Final = (props) => {
               </tr>
             </tbody>
           </table>
-          <h4 style={{ textAlign: "center", marginTop: "-40px" }}>
-            <Link to="/">Go Back</Link>
-          </h4>
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "-60px",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignSelf: "center",
+              width: "80%",
+              padding: "20px",
+              margin: " auto",
+            }}
+          >
+            <h4>
+              <Link to="/">Go Back</Link>
+            </h4>
+            <p>
+              Doesn't match the tree you're trying to identify? <br /> Use the
+              below button to contact us with the image of the tree you're
+              trying to identify so we can help
+            </p>
+            <button>
+              <a
+                style={{ color: "white" }}
+                href="https://treesidentifier.org.ng/contact-us/"
+              >
+                Contact Admin
+              </a>
+            </button>
+          </div>
         </div>
       )}
     </>
